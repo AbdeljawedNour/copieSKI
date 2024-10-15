@@ -25,26 +25,26 @@ public class CourseServicesImpl implements ICourseServices {
     public CourseDTO addCourse(CourseDTO courseDTO) {
         Course course = mapToEntity(courseDTO);
         Course savedCourse = courseRepository.save(course);
-        return mapToDTO(savedCourse); // Retourne le DTO après enregistrement
+        return mapToDTO(savedCourse);
     }
 
     @Override
     public CourseDTO updateCourse(CourseDTO courseDTO) {
         Course course = mapToEntity(courseDTO);
         Course updatedCourse = courseRepository.save(course);
-        return mapToDTO(updatedCourse); // Retourne le DTO après mise à jour
+        return mapToDTO(updatedCourse);
     }
 
     @Override
     public CourseDTO retrieveCourse(Long numCourse) {
         Course course = courseRepository.findById(numCourse).orElse(null);
-        return mapToDTO(course); // Retourne le DTO
+        return mapToDTO(course);
     }
 
     // Méthode pour mapper CourseDTO à Course
     private Course mapToEntity(CourseDTO courseDTO) {
         if (courseDTO == null) {
-            return null;
+            throw new IllegalArgumentException("The CourseDTO cannot be null");
         }
         Course course = new Course();
         course.setNumCourse(courseDTO.getNumCourse());
