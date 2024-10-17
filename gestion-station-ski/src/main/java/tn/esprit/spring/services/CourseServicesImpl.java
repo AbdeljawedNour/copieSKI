@@ -1,5 +1,6 @@
 package tn.esprit.spring.services;
 
+import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.spring.dto.CourseDTO;
 import tn.esprit.spring.entities.Support;
 import lombok.AllArgsConstructor;
@@ -20,7 +21,7 @@ public class CourseServicesImpl implements ICourseServices {
     public List<Course> retrieveAllCourses() {
         return courseRepository.findAll();
     }
-
+    @Transactional
     @Override
     public CourseDTO addCourse(CourseDTO courseDTO) {
         Course course = mapToEntity(courseDTO);
